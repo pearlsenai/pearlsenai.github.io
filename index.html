@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pearlsen AI System</title>
+<style>
+body {
+    margin:0;
+    background:#050505;
+    color:#00ffcc;
+    font-family: monospace;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.panel {
+    border:2px solid #00ffcc;
+    padding:30px 40px;
+    text-align:center;
+    width:320px;
+}
+h1 { margin-top:0; }
+input {
+    width:90%;
+    margin:6px 0;
+    padding:6px;
+    background:black;
+    color:#00ffcc;
+    border:1px solid #00ffcc;
+}
+button {
+    margin-top:10px;
+    padding:6px 12px;
+    background:black;
+    color:#00ffcc;
+    border:1px solid #00ffcc;
+    cursor:pointer;
+}
+.hidden { display:none; }
+.log { margin-top:10px; font-size:12px; color:#aaa; }
+</style>
+</head>
+<body>
+
+<div class="panel" id="login">
+    <h1>PEARLSEN AI</h1>
+    <input id="u" placeholder="Username">
+    <input id="p" type="password" placeholder="Password">
+    <button onclick="auth()">ENTER</button>
+    <div class="log" id="msg"></div>
+</div>
+
+<div class="panel hidden" id="system">
+    <h1>ACCESS GRANTED</h1>
+    <input id="hid" placeholder="ENTER H-ID">
+    <br>
+    <button onclick="cmd('START')">START</button>
+    <button onclick="cmd('DISABLE')">DISABLE</button>
+    <div class="log" id="out"></div>
+</div>
+
+<script>
+function auth(){
+    if(u.value.trim()==="monkey" && p.value.trim()==="S-355"){
+        login.classList.add("hidden");
+        system.classList.remove("hidden");
+    } else {
+        msg.textContent="ACCESS DENIED";
+    }
+}
+
+function cmd(type){
+    const id = hid.value || "UNKNOWN";
+    out.textContent = "[SYSTEM] H-ID " + id + " " + type;
+}
+</script>
+
+</body>
+</html>
